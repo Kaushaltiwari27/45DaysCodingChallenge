@@ -1,0 +1,326 @@
+1)Move Zeroes
+class Solution {
+    public void moveZeroes(int[] nums) {
+        if (nums.length == 1) {
+            return;
+        }
+
+        int nonZeroIndex = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[nonZeroIndex] = nums[i];
+                nonZeroIndex++;
+            }
+        }
+
+       
+         while(nonZeroIndex<nums.length){
+            nums[nonZeroIndex] = 0;
+            nonZeroIndex++;
+        }
+    }
+}
+
+
+
+2)Best Time to Buy and Sell Stock
+
+class Solution {
+    public int maxProfit(int[] prices) {
+       int profit=0;
+       int buy=prices[0];
+       for(int i=1;i<prices.length;i++){
+           if(buy<prices[i]){
+               profit=Math.max(prices[i]-buy,profit);
+           }
+           else{
+               buy=prices[i];
+           }
+       }
+       return profit;
+       } 
+    }
+
+
+
+
+
+
+3) Two Sum
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+  int n = nums.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{}; // No solution found
+    }
+}
+
+
+
+4) Sort Colors
+class Solution {
+    public void sortColors(int[] nums) {
+      int z=0,on=0, n=nums.length;
+      for(int num:nums){
+        if(num==0){
+            z++;
+        }
+        else if(num==1){
+            on++;
+        }
+      }
+      for(int i=0;i<z;i++){
+        nums[i]=0;
+      }
+      for(int i=z;i<z+on;i++){
+        nums[i]=1;
+      }
+      for(int i=z+on;i<n;i++){
+        nums[i]=2;
+      }
+    }
+}
+
+
+
+5)Remove Duplicates from Sorted Array
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int j = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+}
+
+
+
+6)Remove Duplicates from Sorted Array
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int j = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] != nums[i - 1]) {
+                nums[j] = nums[i];
+                j++;
+            }
+        }
+        return j;
+    }
+}
+
+
+7)Best Time to Buy and Sell Stock II
+class Solution {
+    public int maxProfit(int[] prices) {
+        int profit = 0;
+        for(int i=1;i<prices.length;i++) {
+            if(prices[i] > prices[i-1]) {
+                profit += prices[i] - prices[i-1];
+            }
+        }
+        return profit;
+    }
+}
+
+
+8)Find All Duplicates in an Array
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        HashSet<Integer> s= new HashSet<>();
+        ArrayList<Integer> a= new ArrayList<>();
+        for(int i=0;i<nums.length;i++){
+            if(!s.add(nums[i])){
+                a.add(nums[i]);
+            }
+        }
+        return a;
+    }
+}
+
+
+
+9)Container With Most Water
+class Solution {
+    public int maxArea(int[] height) {
+        int maxWater=0;
+        int lp=0;
+        int rp=height.length-1;
+        while(lp<rp){
+             int width=rp-lp;
+            int h=Math.min(height[lp],height[rp] );
+            int area=h*width;
+            maxWater=Math.max(maxWater,area);
+            if(height[lp]<height[rp]){
+                lp++;
+            }
+            else{
+                rp--;
+            }
+        }
+        return maxWater;
+    }
+}
+
+10)3Sum
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        int target = 0;
+        Arrays.sort(nums);
+        Set<List<Integer>> s = new HashSet<>();
+        List<List<Integer>> output = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++){
+            int j = i + 1;
+            int k = nums.length - 1;
+            while (j < k) {
+                int sum = nums[i] + nums[j] + nums[k];
+                if (sum == target) {
+                    s.add(Arrays.asList(nums[i], nums[j], nums[k]));
+                    j++;
+                    k--;
+                } else if (sum < target) {
+                    j++;
+                } else {
+                    k--;
+                }
+            }
+        }
+        output.addAll(s);
+        return output;
+    }
+}
+
+11)Spiral Matrix
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) {
+            return result;
+        }
+        
+        int rows = matrix.length, cols = matrix[0].length;
+        int left = 0, right = cols-1, top = 0, bottom = rows-1;
+        
+        while (left <= right && top <= bottom) {
+            for (int i = left; i <= right; i++) {
+                result.add(matrix[top][i]);
+            }
+            top++;
+            
+            for (int i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
+            }
+            right--;
+            
+            if (top <= bottom) {
+                for (int i = right; i >= left; i--) {
+                    result.add(matrix[bottom][i]);
+                }
+                bottom--;
+            }
+            
+            if (left <= right) {
+                for (int i = bottom; i >= top; i--) {
+                    result.add(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+        
+        return result;
+    }
+}
+
+12)word-search
+class Solution {
+    public boolean exist(char[][] board, String word) {
+        int n = board.length, m = board[0].length;
+        boolean visited[][] = new boolean[n][m];
+        boolean result = false;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (board[i][j] == word.charAt(0)) {
+                    result = backtrack(board, word, visited, i, j, 0);
+                    if (result) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean backtrack(char[][] board, String word, boolean [][] visited, int i, int j, int index){
+        if(index==word.length()){
+            return true;
+        }
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[i][j] || board[i][j] != word.charAt(index)) {
+            return false;
+        }
+        visited[i][j]=true;
+        if(backtrack(board,word,visited,i+1,j,index+1)||backtrack(board,word,visited,i-1,j,index+1)||backtrack(board,word,visited,i,j+1,index+1)||backtrack(board,word,visited,i,j-1,index+1)){
+            return true;
+        }
+        visited[i][j]=false;
+        return false;
+    }
+
+}
+
+
+
+
+13)Merge Sorted Array  
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+          int i=m-1, j=n-1,x=m+n-1;
+          while(i>=0 && j>=0){
+            if(nums1[i]>nums2[j]){
+                nums1[x]=nums1[i];
+                i--;
+                x--;
+            }
+            else{
+                nums1[x]=nums2[j];
+                j--;
+                x--;
+            }
+          }
+          while(i>=0){
+             nums1[x]=nums1[i];
+                i--;
+                x--;
+          }
+          while(j>=0){
+             nums1[x]=nums2[j];
+                j--;
+                x--;
+          }
+    }
+}
+
+
+14)Jump Game
+class Solution {
+    public boolean canJump(int[] nums) {
+       int reachable = 0;
+       for(int i = 0; i < nums.length; i ++) {
+           if(i > reachable) return false;
+           reachable = Math.max(reachable, i + nums[i]);
+       } 
+       return true;
+    }
+}
