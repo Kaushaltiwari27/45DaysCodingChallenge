@@ -1,4 +1,4 @@
-1)Move Zeroes
+1)Move Zeroes https://leetcode.com/problems/move-zeroes/submissions/1325938533
 class Solution {
     public void moveZeroes(int[] nums) {
         if (nums.length == 1) {
@@ -24,7 +24,7 @@ class Solution {
 
 
 
-2)Best Time to Buy and Sell Stock
+2)Best Time to Buy and Sell Stock     https://leetcode.com/problems/best-time-to-buy-and-sell-stock/submissions/1325840146
 
 class Solution {
     public int maxProfit(int[] prices) {
@@ -47,7 +47,7 @@ class Solution {
 
 
 
-3) Two Sum
+3) Two Sum   https://leetcode.com/problems/two-sum/submissions/1325843364
 class Solution {
     public int[] twoSum(int[] nums, int target) {
   int n = nums.length;
@@ -64,7 +64,7 @@ class Solution {
 
 
 
-4) Sort Colors
+4) Sort Colors     https://leetcode.com/problems/sort-colors/submissions/1325869670
 class Solution {
     public void sortColors(int[] nums) {
       int z=0,on=0, n=nums.length;
@@ -90,7 +90,7 @@ class Solution {
 
 
 
-5)Remove Duplicates from Sorted Array
+5)Remove Duplicates from Sorted Array    https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/1321469713
 class Solution {
     public int removeDuplicates(int[] nums) {
         int j = 1;
@@ -106,7 +106,7 @@ class Solution {
 
 
 
-6)Remove Duplicates from Sorted Array
+6)Remove Duplicates from Sorted Array    https://leetcode.com/problems/remove-duplicates-from-sorted-array/submissions/1321469713
 
 class Solution {
     public int removeDuplicates(int[] nums) {
@@ -122,7 +122,7 @@ class Solution {
 }
 
 
-7)Best Time to Buy and Sell Stock II
+7)Best Time to Buy and Sell Stock II   https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/submissions/1325942235
 class Solution {
     public int maxProfit(int[] prices) {
         int profit = 0;
@@ -136,7 +136,7 @@ class Solution {
 }
 
 
-8)Find All Duplicates in an Array
+8)Find All Duplicates in an Array   https://leetcode.com/problems/find-all-duplicates-in-an-array/submissions/1328029675
 class Solution {
     public List<Integer> findDuplicates(int[] nums) {
         HashSet<Integer> s= new HashSet<>();
@@ -152,7 +152,7 @@ class Solution {
 
 
 
-9)Container With Most Water
+9)Container With Most Water   https://leetcode.com/problems/container-with-most-water/submissions/1325849054
 class Solution {
     public int maxArea(int[] height) {
         int maxWater=0;
@@ -174,7 +174,7 @@ class Solution {
     }
 }
 
-10)3Sum
+10)3Sum   https://leetcode.com/problems/3sum/submissions/1325862276
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         int target = 0;
@@ -202,7 +202,7 @@ class Solution {
     }
 }
 
-11)Spiral Matrix
+11)Spiral Matrix   https://leetcode.com/problems/spiral-matrix/submissions/1327060532
 class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> result = new ArrayList<>();
@@ -243,7 +243,7 @@ class Solution {
     }
 }
 
-12)word-search
+12)word-search   https://leetcode.com/problems/word-search/submissions/1327987322
 class Solution {
     public boolean exist(char[][] board, String word) {
         int n = board.length, m = board[0].length;
@@ -282,7 +282,7 @@ class Solution {
 
 
 
-13)Merge Sorted Array  
+13)Merge Sorted Array  https://leetcode.com/problems/merge-sorted-array/submissions/1328002984
 
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -313,7 +313,7 @@ class Solution {
 }
 
 
-14)Jump Game
+14)Jump Game   https://leetcode.com/problems/jump-game/submissions/1328011483
 class Solution {
     public boolean canJump(int[] nums) {
        int reachable = 0;
