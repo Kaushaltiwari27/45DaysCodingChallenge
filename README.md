@@ -1,4 +1,4 @@
-# 45CodingChallenge
+# 45DaysCodingChallenge
 Day1 I have solve only 1 Easy question,     
 On Day 2 I have solved 14 Easy,Medium questions,     
 On Day 3 I have solved 12 Easy questions,     
