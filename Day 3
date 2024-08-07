@@ -1,0 +1,304 @@
+Day 3
+ 1)  Range Sum Query - Immutable    https://leetcode.com/problems/range-sum-query-immutable/submissions/1337953483
+
+class NumArray {
+    public int[] arr2;
+    public NumArray(int[] nums) {
+         arr2=new int[nums.length+1];
+         for(int i=0;i<nums.length;i++){
+            arr2[i+1]=arr2[i]+nums[i];
+         }
+    }
+    
+    public int sumRange(int left, int right) {
+        return arr2[right+1]-arr2[left];
+    }
+}
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * NumArray obj = new NumArray(nums);
+ * int param_1 = obj.sumRange(left,right);
+ */
+
+
+
+2)climbing-stairs       https://leetcode.com/problems/climbing-stairs/submissions/1337957358
+class Solution {
+    public int climbStairs(int n) {
+
+        if(n==0||n==1){
+            return 1;
+        }
+        int dp[]=new int[n+1];
+
+        dp[0]=1;
+        dp[1]=1;
+        for(int i=2;i<=n;i++){
+            dp[i]=dp[i-1]+dp[i-2];
+        }
+        return dp[n];
+    }
+}
+
+
+
+
+3)Counting Bits      https://leetcode.com/problems/counting-bits/submissions/1337962014
+class Solution {
+    public int[] countBits(int n) {
+        int ans[]= new int[n+1];
+        for(int i=1;i<=n;i++){
+            ans[i]=ans[i>>1]+(i&1);
+        }
+        return ans;
+    }
+}
+
+
+
+4)bfs-traversal-of-graph/
+
+
+
+
+5)DFS of Graph
+
+6)flood-fill       https://leetcode.com/problems/flood-fill/submissions/1338015589
+class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+         if(image[sr][sc] == color) return image;
+        helper(image,sr,sc,color,image[sr][sc]);
+        return image;
+    }
+
+    public void helper(int image[][], int sr, int sc, int color, int ogc){
+        if(sr<0||sc<0||sr>=image.length||sc>=image[0].length||image[sr][sc]!=ogc){
+            return ;
+        }
+        image[sr][sc]=color;
+        // left
+        helper( image , sr , sc-1 , color, ogc);
+        // right
+        helper(image,sr,sc+1,color, ogc);
+        // up
+        helper(image,sr-1,sc,color, ogc);
+        // down
+        helper(image,sr+1,sc,color, ogc);
+
+    }
+}
+
+
+7)Diameter-of-binary-tree     https://leetcode.com/problems/diameter-of-binary-tree/submissions/1338038310
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+     int diameter = 0;
+    public int diameterOfBinaryTree(TreeNode root) {
+         height(root);
+        return diameter - 1;
+    }
+    public int height(TreeNode node){
+        if(node==null) return 0;
+        int leftHeight=height(node.left);
+        int rightHeight=height(node.right);
+        int dia=leftHeight+rightHeight+1;
+        diameter=Math.max(dia,diameter);
+        return Math.max(leftHeight,rightHeight)+1;
+    }
+}
+
+
+8)Invert-binary-tree    https://leetcode.com/problems/invert-binary-tree/submissions/1338041284
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public TreeNode invertTree(TreeNode root) {
+       if(root==null) return null;
+        TreeNode leftroot=invertTree(root.left);
+       TreeNode rightroot=invertTree(root.right);
+       root.left=rightroot;
+       root.right=leftroot;
+       return root;
+    }
+}
+
+
+9)Subtree of Another Tree     https://leetcode.com/problems/subtree-of-another-tree/submissions/1338042411
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public static boolean isIdentical(TreeNode node, TreeNode subRoot){
+        if(node==null && subRoot==null){
+            return true;
+        }
+        else if(node==null|| subRoot==null ||node.val!=subRoot.val){
+            return false;
+        }
+        if(!isIdentical(node.left,subRoot.left)){
+            return false;
+        }
+        if(!isIdentical(node.right,subRoot.right)){
+            return false;
+        }
+     return true;
+    }
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if(root==null){
+            return false;
+        }
+        if(root.val==subRoot.val){
+            if(isIdentical(root,subRoot)){
+                return true;
+            }
+        }
+        boolean leftAns=isSubtree(root.left,subRoot);
+        boolean rightAns=isSubtree(root.right,subRoot);
+
+        return leftAns ||rightAns;
+    }
+}
+
+10) Range Sum of BST   https://leetcode.com/problems/range-sum-of-bst/submissions/1338071519
+class Solution {
+    int sum = 0;
+
+    public int rangeSumBST(TreeNode root, int low, int high) {
+        if(root == null) return sum;
+
+        dfs(root, low, high);
+
+        return sum;
+    }
+
+    private void dfs(TreeNode root, int low, int high){
+        if(root == null) return;
+
+        if(root.val > low) {
+            dfs(root.left, low, high);
+        }
+
+        if(root.val >= low && root.val <= high){
+            sum += root.val;
+        }
+
+        if(root.val < high) {
+            dfs(root.right, low, high);
+        }
+    }
+}
+
+11)symmetric-tree   https://leetcode.com/problems/symmetric-tree/submissions/1339117636
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+      if(root==null){
+        return true;
+      }
+      return isMirror(root.left,root.right);
+    }
+    public boolean isMirror(TreeNode n1, TreeNode n2){
+        if(n1==null&&n2==null){
+            return true;
+        }
+        if(n1==null||n2==null||n1.val!=n2.val){
+            return false;
+        }
+        return isMirror(n1.left,n2.right)&&isMirror(n1.right,n2.left);
+    }
+    
+}
+
+
+
+
+
+
+12) Convert Sorted Array to Binary Search Tree    https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/submissions/1339122778
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
+ * }
+ */
+class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+        int st = 0;
+        int end = nums.length - 1;
+        return createBST(nums, st, end);
+    }
+
+    public TreeNode createBST(int arr[], int s, int e) {
+        if (s > e) {
+            return null;
+        }
+        int mid = (s + e) / 2;
+        TreeNode root = new TreeNode(arr[mid]);
+        root.left = createBST(arr, s, mid - 1);
+        root.right = createBST(arr, mid + 1, e);
+        return root;
+    }
+}
